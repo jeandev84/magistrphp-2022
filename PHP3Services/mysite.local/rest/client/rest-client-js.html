@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<title>Новостная лента</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/javascript">
+		function updateNewsList() {
+			let c = document.querySelector("#newsContainer");
+			fetch("/rest/news", {
+				//credentials : "include", // send cookie
+				headers : { "Content-Type": "application/json "},
+				method  : "GET"
+			})
+			.then(response => response.json())
+			.then(data =>{
+				//console.log(data);
+				c.innerHTML = '';
+				for(let i=0; i < data.length; i++) {
+					c.innerHTML += '<h3>'+data[i].title+'</h3>';
+					c.innerHTML += '<a href="javascript:delNews('+data[i].id+')">Удалить</h3>';
+					c.innerHTML += '<p>'+data[i].description+'</p>';
+					c.innerHTML += '<code>'+data[i].source+'</code>';
+				}
+			})
+			.catch(error => c.innerHTML = error);
+		}
+		
+		function delNews(id) {
+			fetch("/rest/news/"+id, {
+				method  : "DELETE"
+			})
+			.then(response => updateNewsList())
+			.catch(error => c.innerHTML = error);
+		}
+		function saveNews() {
+			let fd = new FormData(document.getElementById('newsForm'));
+			let data = {};
+			for(let [name, value] of fd) 
+				data[name] = value;
+			//console.log(JSON.stringify(data));
+			
+			fetch("/rest/news", {
+				//credentials : "include", // send cookie
+				headers : { "Content-Type": "application/json "},
+				method  : "POST",
+				body    : JSON.stringify(data)
+			})
+			.then(response => updateNewsList())
+			.catch(error => c.innerHTML = error);			
+			
+		}
+		
+		window.addEventListener("load", updateNewsList);
+	</script>
+</head>
+<body>
+
+<h1>Последние новости</h1>
+<form id="newsForm">
+
+Заголовок новости:<br />
+	<input type="text" name="title" id="title"/><br />
+	Выберите категорию:<br />
+	<select name="category" id="category">
+	<option value="1">Политика</option>
+	<option value="2">Культура</option>
+	<option value="3">Спорт</option>
+	</select>
+	<br />
+	Текст новости:<br />
+	<textarea name="description" id="description" cols="50" rows="5"></textarea><br />
+	Источник:<br />
+	<input type="text" name="source" id="source"/><br />
+	<br />
+	<input type="button" value="Добавить!" onclick="saveNews()"/>
+</form>
+<div id="newsContainer">
+</div>
+</body>
+</html>

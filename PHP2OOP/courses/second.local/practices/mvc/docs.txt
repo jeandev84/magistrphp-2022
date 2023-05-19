@@ -1,0 +1,51 @@
+// Шаблоны проектирования - Это какие-то готовые решение, которые решают некоторые проблем в разработке
+
+// Например:
+[
+ - MVC [Model View Controller]
+ - Singleton
+ - Factory
+ - Factory Method
+]
+
+M - Model
+V - View
+C - Controller
+
+
+https://refactoring.guru/ru
+https://refactoring.guru/ru/design-patterns/adapter/php/example
+https://refactoring.guru/fr
+https://refactoring.guru/en
+
+
+UML - Язык Модилирования
+
+https://www.sitepoint.com/the-mvc-pattern-and-php-1/
+
+
+// http://second.local/mvc/?action=index
+// httpd.apache.org/docs/mod/mod_rewrite.html
+// http://second.local/mvc/index
+ЧПУ - Человек Понять УРЛ
+
+
+// https://stackoverflow.com/questions/12448912/apache-mod-rewrite-for-laravel
+URLs:
+http://localhost/laravel/public/index.php/home/index
+
+======================================================================
+.htaccess
+
+Options +FollowSymLinks
+Options -indexes
+DirectoryIndex index.PHP
+RewriteEngine on
+RewriteCond $1 !^(index\.PHP|images|robots.txt)
+RewriteCond %{REQUEST_ FILENAME} !-f
+RewriteCond %{REQUEST_ FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L, QSA]
+
+
+To Reduce the URL http://localhost/laravel/public/home/index
+To http://localhost/laravel/home/index

@@ -1,0 +1,13 @@
+{
+    "require": {
+        "webonyx/graphql-php": "^14.5",
+        "lcobucci/jwt": "^3.4",
+        "ext-sqlite3": "*",
+         "ext-dom": "*",
+         "ext-xmlreader": "*",
+         "ext-xmlwriter": "*",
+         "ext-xsl": "*",
+         "ext-soap": "*",
+         "ext-sockets": "*"
+    }
+}

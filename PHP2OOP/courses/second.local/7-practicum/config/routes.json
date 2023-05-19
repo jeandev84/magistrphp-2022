@@ -1,0 +1,10 @@
+{
+  "/": "\\App\\Controllers\\IndexController:index",
+  "/addbook": "\\App\\Controllers\\IndexController:addbook",
+
+  "/basket": "\\App\\Controllers\\BasketController:index",
+  "/addbasket": "\\App\\Controllers\\BasketController:addbasket",
+  "/deletefrombasket": "\\App\\Controllers\\BasketController:deletefrombasket",
+
+  "/order": "\\App\\Controllers\\OrderController:index"
+}

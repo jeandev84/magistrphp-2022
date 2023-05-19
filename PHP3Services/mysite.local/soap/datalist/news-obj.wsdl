@@ -1,0 +1,59 @@
+<?xml version ='1.0' encoding ='UTF-8' ?> 
+<definitions name='News' 
+		targetNamespace='http://localhost/news' 
+		xmlns:tns=' http://localhost/news' 
+		xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+		xmlns:xsd='http://www.w3.org/2001/XMLSchema' 
+		xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/' 
+		xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+		xmlns='http://schemas.xmlsoap.org/wsdl/'> 
+    <types>
+        <xsd:schema xmlns:tns="http://schemas.xmlsoap.org/wsdl/"
+                   xmlns="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                   elementFormDefault="qualified"
+                   targetNamespace="http://localhost/news">
+            <complexType name="NewsMessage">
+                <sequence>
+                    <element name="id" type="integer" minOccurs="1" maxOccurs="1" />
+                    <element name="title" type="string" minOccurs="1" maxOccurs="1" />
+                    <element name="description" type="string" minOccurs="1" maxOccurs="1" />
+                    <element name="datetime" type="integer" minOccurs="1" maxOccurs="1" />
+                </sequence>
+            </complexType>
+
+			<element name="NewsMessageList" type="NewsListMessage"/>
+			<complexType name="newsListMessage">
+                <sequence>
+					<element name="News" type="NewsMessage" minOccurs="1" maxOccurs="unbounded"/>
+				</sequence>
+			</complexType>
+        </xsd:schema>
+    </types>
+
+	<message name='getNewsByIdRequest'> 
+		<part name='id' type='xsd:integer'/> 
+	</message> 
+	<message name='getNewsByIdResponse'> 
+		<part name='News' type='tns:News'/> 
+	</message> 
+
+
+	<portType name='NewsPortTypeObj'> 
+		<operation name='getNewsById'> 
+			<input message='tns:getNewsByIdRequest'/> 
+			<output message='tns:getNewsByIdResponse'/> 
+		</operation>
+	</portType>
+
+	<binding name='NewsBindingObj' type='tns:NewsPortTypeObj'> 
+		<soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/> 
+		<operation name='getNewsById' /> 
+	</binding> 
+
+	<service name='NewsServiceObj'> 
+		<port name='NewsPortObj' binding='NewsBindingObj'> 
+			<soap:address location='http://localhost/soap/soap-server-obj.php'/> 
+		</port> 
+	</service> 
+</definitions>

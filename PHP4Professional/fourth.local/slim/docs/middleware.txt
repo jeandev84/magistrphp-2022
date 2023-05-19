@@ -1,0 +1,6 @@
+fn1(fn2(fn3(fn4())))
+
+$fns = ['fn1' , 'fn2', 'fn3', 'fn4'];
+
+$dn = $fns[count($fns)]();
+

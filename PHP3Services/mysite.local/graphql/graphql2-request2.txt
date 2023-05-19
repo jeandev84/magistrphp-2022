@@ -1,0 +1,9 @@
+query {
+  news (id: 4) {
+    id
+    title
+    description
+    source
+    datetime
+  }
+}

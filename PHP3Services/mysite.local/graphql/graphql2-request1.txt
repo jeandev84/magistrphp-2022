@@ -1,0 +1,9 @@
+query {
+  allNews {
+    id
+    title
+    description
+    source
+    datetime
+  }
+}

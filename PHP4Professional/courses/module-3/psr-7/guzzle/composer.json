@@ -1,0 +1,8 @@
+{
+    "require": {
+        "squizlabs/php_codesniffer": "*",
+        "friendsofphp/php-cs-fixer": "^3.16",
+        "symfony/cache": "^6.2",
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}

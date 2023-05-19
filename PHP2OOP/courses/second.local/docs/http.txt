@@ -1,0 +1,24 @@
+Клиент
+GET  / HTTP/1.1
+Host: specialist.ru
+...
+
+
+Сервер
+HTTP/1.1 20 OK
+Content-Type: text/html; charset
+
+<!doctype html>
+...
+
+header();
+
+========================================================================================================================
+Установить MAMP для Linux (Сборка серверов)
+https://mamp.info/en/linux
+
+Установить WAMP || MAMP для Windows (Сборка серверов)
+https://mamp.info/en/windows
+
+========================================================================================================================
+https://interview.cups.online/live-coding/?room=a3a5428b-e7f0-4816-aa3f-ab24ae305350

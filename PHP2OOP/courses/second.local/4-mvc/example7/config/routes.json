@@ -1,0 +1,4 @@
+{
+  "/": "\\App\\Controllers\\IndexController:index",
+  "/about": "\\App\\Controllers\\IndexController:about"
+}
